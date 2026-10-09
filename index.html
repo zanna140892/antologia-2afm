@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Antologia Poetica della Classe 2AFM</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            serif: ['"Cormorant Garamond"', 'serif'],
+            display: ['"Playfair Display"', 'serif'],
+            sans: ['Inter', 'sans-serif']
+          },
+          colors: {
+            perg: {
+              50: '#FDFCF7', 100: '#FAF6ED', 200: '#F4ECE0', 300: '#E8DBC5', 400: '#D5C2A5',
+              600: '#8A7A66', 700: '#70614E', 800: '#4D4236', 900: '#2A231C'
+            },
+            ink: { 700: '#2B303A', 800: '#1C212A', 900: '#111419' },
+            terracotta: { 100: '#FBECE8', 500: '#C86D51', 600: '#B25A3F', 700: '#8E4028' }
+          },
+          boxShadow: {
+            'paper': '0 4px 20px -2px rgba(42, 35, 28, 0.07), 0 2px 6px -1px rgba(42, 35, 28, 0.04)',
+            'paper-hover': '0 12px 28px -4px rgba(42, 35, 28, 0.12), 0 4px 10px -2px rgba(42, 35, 28, 0.05)'
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      background-color: #FAF6ED;
+      background-image: radial-gradient(#E8DBC5 0.75px, transparent 0.75px), radial-gradient(#E8DBC5 0.75px, #FAF6ED 0.75px);
+      background-size: 28px 28px;
+      background-position: 0 0, 14px 14px;
+    }
+    .poem-text { white-space: pre-wrap; word-wrap: break-word; line-height: 1.85; letter-spacing: 0.015em; }
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #F4ECE0; }
+    ::-webkit-scrollbar-thumb { background: #D5C2A5; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #70614E; }
+
+    @media print {
+      body { background: #ffffff !important; color: #000000 !important; }
+      header, footer, #controlsArea, #toastNotification, .no-print, #emptyStateActions { display: none !important; }
+      .poem-card { border: 1px solid #bbb !important; box-shadow: none !important; page-break-inside: avoid; margin-bottom: 2.5rem !important; }
+      #printHeader { display: block !important; }
+    }
+    #printHeader { display: none; }
+  </style>
+</head>
+<body class="text-ink-900 font-sans min-h-screen flex flex-col selection:bg-terracotta-100 selection:text-terracotta-700">
+
+  <div id="printHeader" class="p-8 text-center border-b-2 border-black mb-8">
+    <h1 class="font-display text-4xl font-bold mb-2">Antologia Poetica della Classe 2AFM</h1>
+    <p class="font-serif italic text-lg text-gray-700">Raccolta dei componimenti poetici degli studenti</p>
+  </div>
+
+  <header class="border-b border-perg-300 bg-perg-50/95 backdrop-blur-md sticky top-0 z-30 transition-all shadow-sm no-print">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex flex-col md:flex-row items-center justify-between gap-3">
+      <div class="flex items-center space-x-3 text-center sm:text-left">
+        <span class="text-3xl filter drop-shadow">📜</span>
+        <div>
+          <div class="flex items-center gap-2 flex-wrap justify-center sm:justify-start">
+            <h1 class="font-display font-bold text-lg sm:text-xl text-perg-900 tracking-tight leading-none">
+              Antologia Poetica della Classe 2AFM
+            </h1>
+            <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-100 text-emerald-800 border border-emerald-300">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+              <span id="syncStatusText">Bacheca Pronta</span>
+            </span>
+          </div>
+          <p class="font-serif italic text-xs text-perg-700 mt-0.5">
+            Bacheca aperta ai contributi di tutti gli studenti
+          </p>
+        </div>
+      </div>
+
+      <div class="flex flex-wrap items-center gap-2 justify-center sm:justify-end">
+        <button id="btnShareClass" class="px-3 py-1.5 text-xs font-semibold uppercase tracking-wider text-perg-800 bg-perg-200 hover:bg-perg-300 rounded-lg border border-perg-300 transition flex items-center gap-1.5">
+          <svg class="w-3.5 h-3.5 text-perg-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/></svg>
+          Condividi Bacheca
+        </button>
+
+        <button id="btnPrintBooklet" class="px-3 py-1.5 text-xs font-semibold uppercase tracking-wider text-perg-800 bg-perg-200 hover:bg-perg-300 rounded-lg border border-perg-300 transition flex items-center gap-1.5" title="Stampa o salva in PDF">
+          <svg class="w-3.5 h-3.5 text-perg-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+          Stampa / PDF
+        </button>
+
+        <button id="btnConfirmClearModal" class="px-3 py-1.5 text-xs font-semibold uppercase tracking-wider text-rose-800 bg-rose-50 hover:bg-rose-100 rounded-lg border border-rose-300 transition flex items-center gap-1.5" title="Cancella tutti i testi">
+          <svg class="w-3.5 h-3.5 text-rose-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+          Svuota Bacheca
+        </button>
+
+        <button id="btnOpenNewModal" class="px-3.5 py-1.5 text-xs font-semibold uppercase tracking-wider text-white bg-terracotta-600 hover:bg-terracotta-700 rounded-lg shadow-sm transition flex items-center gap-1.5 transform active:scale-95">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+          Carica Poesia
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-5 pb-1 text-center no-print">
+    <div class="inline-block bg-perg-100/90 border border-perg-300 rounded-2xl px-6 py-2.5 max-w-2xl shadow-sm">
+      <blockquote class="font-serif italic text-sm sm:text-base text-perg-800">
+        &ldquo;Scrivere versi è restituire alle parole la loro originaria purezza e al silenzio il suo peso specifico.&rdquo;
+      </blockquote>
+      <div class="text-[11px] text-perg-700 uppercase tracking-widest font-semibold mt-1">
+        Classe 2AFM &bullet; Bacheca di Poesia
+      </div>
+    </div>
+  </section>
+
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex-grow w-full">
+    <div id="controlsArea" class="bg-perg-50/90 p-3.5 rounded-2xl border border-perg-300 shadow-sm mb-6 no-print">
+      <div class="text-center text-sm font-serif italic text-perg-700" id="poemCounter">0 poesie raccolte</div>
+    </div>
+
+    <div id="toastNotification" class="fixed bottom-5 right-5 z-50 transform translate-y-20 opacity-0 transition-all duration-300 bg-ink-900 text-perg-50 px-4 py-3 rounded-xl shadow-2xl flex items-center gap-2.5 text-xs pointer-events-none max-w-sm">
+      <span class="text-terracotta-500 font-bold">✦</span>
+      <span id="toastMessage">Operazione completata.</span>
+    </div>
+
+    <div id="poetryGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-start"></div>
+
+    <div id="emptyState" class="text-center py-16 px-4 no-print border-2 border-dashed border-perg-300 rounded-3xl bg-perg-50/60 max-w-2xl mx-auto my-6">
+      <div class="w-16 h-16 mx-auto mb-3 flex items-center justify-center rounded-full bg-perg-200 text-3xl">✒️</div>
+      <h3 class="font-display text-2xl text-perg-900 font-bold mb-1.5">La bacheca è ancora vuota</h3>
+      <p class="font-serif italic text-perg-700 text-base max-w-md mx-auto mb-6 leading-relaxed">
+        Nessuna poesia è ancora stata caricata. La bacheca attende i primi versi degli studenti della 2AFM.
+      </p>
+      <div id="emptyStateActions" class="flex flex-wrap justify-center items-center gap-3">
+        <button id="btnEmptyStateNewPoem" class="px-5 py-2.5 text-xs uppercase tracking-wider font-semibold text-white bg-terracotta-600 hover:bg-terracotta-700 rounded-xl shadow-sm transition flex items-center gap-2">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+          Carica la prima poesia
+        </button>
+        <button id="btnEmptyStateShare" class="px-4 py-2.5 text-xs uppercase tracking-wider font-semibold text-perg-800 bg-perg-200 hover:bg-perg-300 rounded-xl border border-perg-300 transition">
+          Condividi codice classe
+        </button>
+      </div>
+    </div>
+  </main>
+
+  <!-- Modal: svuota bacheca -->
+  <div id="clearConfirmModal" class="fixed inset-0 z-50 bg-ink-900/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="relative bg-perg-50 w-full max-w-md rounded-2xl p-6 shadow-2xl border border-rose-200">
+      <div class="text-center mb-4">
+        <div class="w-12 h-12 mx-auto mb-2 flex items-center justify-center rounded-full bg-rose-100 text-rose-600 text-2xl">⚠️</div>
+        <h3 class="font-display text-xl font-bold text-perg-900">Svuotare l'intera bacheca?</h3>
+        <p class="font-serif italic text-xs text-perg-700 mt-1">Questa operazione rimuoverà tutte le poesie e i commenti finora registrati.</p>
+      </div>
+      <div class="p-3 bg-rose-50 rounded-xl border border-rose-200 text-xs text-rose-900 mb-4 leading-relaxed">
+        <strong>Attenzione:</strong> la bacheca tornerà vuota. Per conservare i lavori puoi prima usare <em>"Stampa / PDF"</em>.
+      </div>
+      <div class="mb-4">
+        <label class="block text-[11px] font-semibold uppercase tracking-wider text-perg-800 mb-1">Password docente</label>
+        <input type="password" id="clearPassword" autocomplete="off" placeholder="Inserisci la password"
+               class="w-full px-3 py-2 bg-perg-100 border border-perg-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-rose-400">
+        <p id="clearPasswordError" class="hidden text-[11px] text-rose-700 mt-1">Password errata.</p>
+      </div>
+      <div class="flex items-center justify-end gap-2.5">
+        <button id="btnCancelClear" class="px-4 py-2 text-xs font-semibold uppercase tracking-wider text-perg-800 bg-perg-200 hover:bg-perg-300 rounded-lg">Annulla</button>
+        <button id="btnExecuteClear" class="px-4 py-2 text-xs font-semibold uppercase tracking-wider text-white bg-rose-600 hover:bg-rose-700 rounded-lg shadow-sm">Sì, Svuota Bacheca</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: condividi -->
+  <div id="shareModal" class="fixed inset-0 z-50 bg-ink-900/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="relative bg-perg-50 w-full max-w-md rounded-2xl p-6 shadow-2xl border border-perg-300">
+      <button id="btnCloseShare" class="absolute top-4 right-4 p-1.5 text-perg-700 hover:text-ink-900 rounded-full hover:bg-perg-200">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+      <div class="text-center mb-4">
+        <div class="text-3xl mb-1">🔗</div>
+        <h3 class="font-display text-xl font-bold text-perg-900">Invita i compagni</h3>
+        <p class="font-serif italic text-xs text-perg-700 mt-1">Invia il link o il codice classe per permettere agli alunni di caricare le proprie poesie.</p>
+      </div>
+      <div class="space-y-3">
+        <div>
+          <label class="block text-[11px] font-semibold uppercase tracking-wider text-perg-800 mb-1">Codice Classe</label>
+          <div class="flex items-center gap-2">
+            <input type="text" id="shareClassCodeInput" readonly value="POESIA-2AFM"
+                   class="w-full px-3 py-2 bg-perg-100 font-mono text-sm border border-perg-300 rounded-lg text-center font-bold text-terracotta-700">
+            <button id="btnCopyCode" class="px-3 py-2 bg-perg-200 hover:bg-perg-300 rounded-lg text-xs font-semibold border border-perg-300">Copia</button>
+          </div>
+        </div>
+        <div>
+          <label class="block text-[11px] font-semibold uppercase tracking-wider text-perg-800 mb-1">Link Diretto Bacheca</label>
+          <div class="flex items-center gap-2">
+            <input type="text" id="shareUrlInput" readonly class="w-full px-3 py-2 bg-perg-100 text-xs border border-perg-300 rounded-lg truncate text-perg-800">
+            <button id="btnCopyUrl" class="px-3 py-2 bg-terracotta-600 hover:bg-terracotta-700 text-white rounded-lg text-xs font-semibold">Copia</button>
+          </div>
+        </div>
+        <div class="p-3 bg-perg-200/60 rounded-xl border border-perg-300 text-[11px] text-perg-800 space-y-1">
+          <p class="font-semibold text-terracotta-700">💡 Come caricare una poesia:</p>
+          <p>Apri il link, clicca su <strong>"Carica Poesia"</strong>, scrivi (o carica da file .txt) i tuoi versi e premi <strong>"Pubblica"</strong>. La data di caricamento viene registrata in automatico.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Leggio -->
+  <div id="lecternModal" class="fixed inset-0 z-50 bg-ink-900/90 backdrop-blur-md hidden flex items-center justify-center p-4 overflow-y-auto">
+    <div class="relative bg-perg-100 w-full max-w-3xl rounded-2xl p-6 sm:p-10 shadow-2xl border border-perg-300 max-h-[92vh] flex flex-col justify-between overflow-y-auto">
+      <button id="btnCloseLectern" class="absolute top-4 right-4 p-2 text-perg-700 hover:text-ink-900 rounded-full hover:bg-perg-200 transition">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+
+      <div class="text-center border-b border-perg-300 pb-4 mb-6">
+        <div id="lecternTheme" class="text-3xl mb-1"></div>
+        <h2 id="lecternTitle" class="font-display text-3xl sm:text-4xl font-bold text-perg-900 tracking-tight">Titolo Poesia</h2>
+        <p id="lecternAuthor" class="font-serif italic text-lg text-perg-700 mt-1">di Studente</p>
+      </div>
+
+      <div class="my-4 max-w-xl mx-auto text-center">
+        <div id="lecternText" class="poem-text font-serif text-xl sm:text-2xl text-ink-800 leading-relaxed italic select-text"></div>
+      </div>
+
+      <div class="border-t border-perg-300 pt-5 mt-4">
+        <div id="lecternNotesBox">
+          <h4 class="text-[11px] uppercase tracking-wider font-semibold text-perg-700 mb-1 font-sans">Nota dell'autore:</h4>
+          <p id="lecternNotes" class="font-serif italic text-sm text-perg-800 leading-relaxed"></p>
+        </div>
+        <div class="mt-4 pt-3 text-xs text-perg-700 border-t border-perg-200 text-center sm:text-left">
+          <span id="lecternDate">Caricata il</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: carica poesia -->
+  <div id="newPoemModal" class="fixed inset-0 z-50 bg-ink-900/80 backdrop-blur-sm hidden flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
+    <div class="relative bg-perg-50 w-full max-w-2xl rounded-2xl p-6 sm:p-8 shadow-2xl border border-perg-300 my-6 max-h-[92vh] overflow-y-auto">
+      <button id="btnCloseModal" class="absolute top-5 right-5 p-2 text-perg-700 hover:text-ink-900 rounded-full hover:bg-perg-200 transition">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+
+      <div class="mb-5">
+        <span class="text-xs uppercase tracking-widest font-bold text-terracotta-600">Nuovo caricamento</span>
+        <h2 class="font-display text-2xl font-bold text-perg-900">Carica la tua Poesia</h2>
+        <p class="font-serif italic text-xs sm:text-sm text-perg-700">
+          La poesia sarà pubblicata sulla bacheca della classe con la data di caricamento.
+        </p>
+      </div>
+
+      <form id="newPoemForm" class="space-y-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs font-semibold uppercase tracking-wider text-perg-800 mb-1">Titolo della poesia *</label>
+            <input type="text" id="inputTitle" required placeholder="Es. Frammenti d'Inverno"
+                   class="w-full px-3 py-2 bg-perg-100 border border-perg-300 rounded-xl text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-terracotta-500">
+          </div>
+          <div>
+            <label class="block text-xs font-semibold uppercase tracking-wider text-perg-800 mb-1">Nome e Cognome *</label>
+            <input type="text" id="inputAuthor" required placeholder="Es. Giulia Brambilla"
+                   class="w-full px-3 py-2 bg-perg-100 border border-perg-300 rounded-xl text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-terracotta-500">
+          </div>
+        </div>
+
+        <div>
+          <div>
+            <label class="block text-xs font-semibold uppercase tracking-wider text-perg-800 mb-1">Simbolo / Icona</label>
+            <select id="inputSymbol" class="w-full px-3 py-2 bg-perg-100 border border-perg-300 rounded-xl text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-terracotta-500">
+              <option value="leaves">🍂 Foglie secche / Autunno</option>
+              <option value="moon">🌙 Chiaro di luna / Notte</option>
+              <option value="sea">🌊 Onde / Abisso marino</option>
+              <option value="mirror">🪞 Specchio / Riflesso</option>
+              <option value="clock">⏳ Clessidra / Orologio</option>
+              <option value="train">🚂 Binari / Stazione</option>
+              <option value="bird">🕊️ Volo / Orizzonte</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <div class="flex items-center justify-between gap-2 mb-0.5">
+            <label class="block text-xs font-semibold uppercase tracking-wider text-perg-800">Testo della Poesia *</label>
+            <label class="cursor-pointer px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wider text-perg-800 bg-perg-200 hover:bg-perg-300 rounded-lg border border-perg-300 transition">
+              📎 Carica da file .txt
+              <input type="file" id="inputFile" accept=".txt,text/plain" class="hidden">
+            </label>
+          </div>
+          <p class="text-[11px] text-perg-700 italic mb-1.5">Usa invio per andare a capo e un doppio invio tra le strofe. La formattazione verrà rispettata.</p>
+          <textarea id="inputText" rows="8" required placeholder="Scrivi o incolla qui i tuoi versi..."
+                    class="w-full p-3 font-serif text-base bg-perg-100 border border-perg-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-terracotta-500 poem-text"></textarea>
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold uppercase tracking-wider text-perg-800 mb-0.5">Nota dell'autore (facoltativa)</label>
+          <p class="text-[11px] text-perg-700 italic mb-1.5">Figure retoriche usate, autori di ispirazione, che cosa volevi esprimere.</p>
+          <textarea id="inputNotes" rows="3" placeholder="Es. Versi sciolti, enjambement ai versi 2 e 5. Ispirato a Montale."
+                    class="w-full p-2.5 text-xs bg-perg-100 border border-perg-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-terracotta-500"></textarea>
+        </div>
+
+        <div class="flex items-center justify-between gap-3 pt-3 border-t border-perg-200">
+          <span class="text-[11px] italic text-perg-700">📅 Data di caricamento: <strong id="previewDate"></strong></span>
+          <div class="flex items-center gap-3">
+            <button type="button" id="btnCancelModal" class="px-4 py-2 text-xs uppercase tracking-wider font-semibold text-perg-800 hover:bg-perg-200 rounded-lg transition">Annulla</button>
+            <button type="submit" class="px-5 py-2.5 text-xs uppercase tracking-wider font-semibold text-white bg-terracotta-600 hover:bg-terracotta-700 rounded-lg shadow-sm transition">Pubblica sulla Bacheca</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal: commenti -->
+  <div id="critiqueModal" class="fixed inset-0 z-50 bg-ink-900/80 backdrop-blur-sm hidden flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
+    <div class="relative bg-perg-50 w-full max-w-xl rounded-2xl p-6 shadow-2xl border border-perg-300 max-h-[90vh] flex flex-col justify-between">
+      <button id="btnCloseCritique" class="absolute top-4 right-4 p-2 text-perg-700 hover:text-ink-900 rounded-full hover:bg-perg-200 transition">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+
+      <div>
+        <div class="border-b border-perg-300 pb-3 mb-3">
+          <span class="text-[11px] font-semibold uppercase tracking-widest text-terracotta-600">Commenti tra compagni</span>
+          <h3 id="critiquePoemTitle" class="font-display text-xl font-bold text-perg-900">Titolo</h3>
+          <p id="critiquePoemAuthor" class="text-xs font-serif italic text-perg-700">di Studente</p>
+        </div>
+        <div class="bg-perg-200/60 p-3 rounded-xl border border-perg-300 mb-3 text-xs text-perg-800 space-y-1">
+          <p class="font-semibold text-terracotta-700 uppercase tracking-wider text-[10px]">Guida per il commento:</p>
+          <ul class="list-disc pl-4 space-y-0.5 text-[11px]">
+            <li><strong>Ritmo e suono:</strong> musicalità, cadenza, pause.</li>
+            <li><strong>Figure e immagini:</strong> efficacia di metafore e similitudini.</li>
+            <li><strong>Significato:</strong> quale riflessione nasce dalla poesia?</li>
+          </ul>
+        </div>
+        <div class="space-y-2.5 max-h-56 overflow-y-auto pr-1 mb-3" id="critiquesList"></div>
+      </div>
+
+      <form id="critiqueForm" class="border-t border-perg-200 pt-3 space-y-2">
+        <input type="hidden" id="critiquePoemId">
+        <div class="grid grid-cols-2 gap-2">
+          <input type="text" id="critiqueReviewer" required placeholder="Il tuo nome"
+                 class="w-full px-3 py-1.5 text-xs bg-perg-100 border border-perg-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-terracotta-500">
+          <select id="critiqueFocus" class="w-full px-2 py-1.5 text-xs bg-perg-100 border border-perg-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-terracotta-500">
+            <option value="Ritmo & Musicalità">Ritmo & Musicalità</option>
+            <option value="Efficacia delle Immagini">Efficacia delle Immagini</option>
+            <option value="Pregnanza Lessicale">Pregnanza Lessicale</option>
+            <option value="Esegesi Tematica">Significato & Interpretazione</option>
+          </select>
+        </div>
+        <textarea id="critiqueText" required rows="2" placeholder="Scrivi il tuo commento motivato sulla poesia del compagno..."
+                  class="w-full p-2.5 text-xs bg-perg-100 border border-perg-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-terracotta-500"></textarea>
+        <div class="flex justify-end">
+          <button type="submit" class="px-4 py-2 text-xs font-semibold uppercase tracking-wider text-white bg-terracotta-600 hover:bg-terracotta-700 rounded-lg shadow-sm transition">Aggiungi Commento</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <footer class="mt-12 border-t border-perg-300 bg-perg-100 py-6 text-center text-xs text-perg-700 no-print">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3 font-serif">
+      <p>&copy; Antologia Poetica della Classe 2AFM</p>
+      <p class="italic">"La poesia comincia quando le parole smettono di essere strumenti e diventano mondi."</p>
+    </div>
+  </footer>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+    import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+    import { getFirestore, doc, setDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+    // Per condividere la bacheca tra tutti gli alunni su GitHub Pages:
+    // crea un progetto Firebase gratuito e incolla qui la sua configurazione, ad esempio
+    // { apiKey: "...", authDomain: "...", projectId: "...", appId: "..." }
+    // Lasciando null, le poesie restano salvate solo nel browser di chi le carica.
+    const FIREBASE_CONFIG = {
+      apiKey: "AIzaSyA8IOiPG0md_N51YmBU8cRDyCulR33HFqw",
+      authDomain: "antologia-2afm.firebaseapp.com",
+      projectId: "antologia-2afm",
+      storageBucket: "antologia-2afm.firebasestorage.app",
+      messagingSenderId: "224330951638",
+      appId: "1:224330951638:web:d52ad3c422896eb8241277"
+    };
+
+    const appId =typeof __app_id !== 'undefined' ? __app_id : 'antologia-poetica-2afm';
+    let db = null, auth = null, currentUser = null, isCloudActive = false;
+
+    let poems = [];
+    const STORAGE_KEY = 'antologia_poetica_2afm_v1';
+
+    const symbolMap = { leaves: '🍂', moon: '🌙', sea: '🌊', mirror: '🪞', clock: '⏳', train: '🚂', bird: '🕊️' };
+
+    // Data di caricamento: giorno, mese, anno e ora
+    function formatDateTime(ts) {
+      return new Date(ts).toLocaleString('it-IT', { day: '2-digit', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+    }
+    function poemDate(p) {
+      return p.createdAt ? formatDateTime(p.createdAt) : (p.date || '');
+    }
+
+    async function initStorage() {
+      const syncStatusText = document.getElementById('syncStatusText');
+      const cfg = FIREBASE_CONFIG || (typeof __firebase_config !== 'undefined' && __firebase_config ? JSON.parse(__firebase_config) : null);
+      if (cfg) {
+        try {
+          const app = initializeApp(cfg);
+          auth = getAuth(app);
+          db = getFirestore(app);
+          if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+            await signInWithCustomToken(auth, __initial_auth_token);
+          } else {
+            await signInAnonymously(auth);
+          }
+          currentUser = auth.currentUser;
+          isCloudActive = true;
+
+          const ref = doc(db, 'artifacts', appId, 'public', 'data', 'poetryCollection', 'boardData');
+          onSnapshot(ref, (snapshot) => {
+            if (snapshot.exists()) {
+              const data = snapshot.data();
+              if (data && Array.isArray(data.poemsList)) { poems = data.poemsList; renderPoemCards(); }
+            } else {
+              setDoc(ref, { poemsList: [], lastUpdated: Date.now() }).catch(console.error);
+            }
+          }, (err) => { console.warn("Cloud error, using local storage:", err); loadLocalStorage(); });
+
+          if (syncStatusText) syncStatusText.textContent = "Connessione Cloud";
+        } catch (err) {
+          console.warn("Firebase failed, using local storage:", err);
+          loadLocalStorage();
+        }
+      } else {
+        loadLocalStorage();
+      }
+    }
+
+    function loadLocalStorage() {
+      isCloudActive = false;
+      document.getElementById('syncStatusText').textContent = "Bacheca Locale";
+      try {
+        const saved = localStorage.getItem(STORAGE_KEY);
+        poems = saved ? JSON.parse(saved) : [];
+      } catch (e) { poems = []; }
+      renderPoemCards();
+    }
+
+    async function persistPoems() {
+      if (isCloudActive && db && currentUser) {
+        try {
+          const ref = doc(db, 'artifacts', appId, 'public', 'data', 'poetryCollection', 'boardData');
+          await setDoc(ref, { poemsList: poems, lastUpdated: Date.now() });
+          return;
+        } catch (err) { console.error("Firestore save error:", err); }
+      }
+      try { localStorage.setItem(STORAGE_KEY, JSON.stringify(poems)); } catch (e) {}
+    }
+
+    function showToast(message) {
+      const toast = document.getElementById('toastNotification');
+      document.getElementById('toastMessage').textContent = message;
+      toast.classList.remove('translate-y-20', 'opacity-0');
+      toast.classList.add('translate-y-0', 'opacity-100');
+      setTimeout(() => {
+        toast.classList.remove('translate-y-0', 'opacity-100');
+        toast.classList.add('translate-y-20', 'opacity-0');
+      }, 3000);
+    }
+
+    function escapeHtml(str) {
+      if (!str) return '';
+      const div = document.createElement('div');
+      div.textContent = str;
+      return div.innerHTML;
+    }
+
+    function renderPoemCards() {
+      const grid = document.getElementById('poetryGrid');
+      const emptyState = document.getElementById('emptyState');
+      const counter = document.getElementById('poemCounter');
+
+      const filtered = poems;
+      counter.textContent = `${poems.length} ${poems.length === 1 ? 'poesia raccolta' : 'poesie raccolte'}`;
+
+      if (filtered.length === 0) {
+        grid.innerHTML = '';
+        emptyState.classList.remove('hidden');
+        return;
+      }
+      emptyState.classList.add('hidden');
+      grid.innerHTML = '';
+
+      filtered.forEach(poem => {
+        const card = document.createElement('article');
+        card.className = "poem-card bg-perg-50 rounded-2xl border border-perg-300 shadow-paper hover:shadow-paper-hover transition-all duration-300 flex flex-col justify-between overflow-hidden group";
+        const critiqueCount = poem.critiques ? poem.critiques.length : 0;
+        const iconEmoji = poem.symbolEmoji || symbolMap[poem.symbol] || '✒️';
+
+        card.innerHTML = `
+          <div class="p-5 pb-3 border-b border-perg-200 bg-perg-100/50">
+            <div class="flex items-start justify-between gap-2 mb-2">
+              <span class="text-2xl leading-none">${iconEmoji}</span>
+              <button onclick="window.openLectern('${poem.id}')" title="Apri in modalità Leggio"
+                      class="text-perg-700 hover:text-terracotta-600 transition p-1 hover:bg-perg-200 rounded-lg text-xs flex items-center gap-1 no-print">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+                <span class="text-[10px] uppercase font-bold tracking-wider hidden sm:inline">Leggio</span>
+              </button>
+            </div>
+            <h3 class="font-display text-xl font-bold text-perg-900 group-hover:text-terracotta-700 transition leading-snug">${escapeHtml(poem.title)}</h3>
+            <p class="font-serif italic text-sm text-perg-700 mt-0.5">di ${escapeHtml(poem.author)}</p>
+            <p class="text-[11px] font-sans not-italic text-perg-600 mt-1">📅 Caricata il ${escapeHtml(poemDate(poem))}</p>
+          </div>
+
+          <div class="p-5 py-4 flex-grow bg-perg-50">
+            <div class="poem-text font-serif text-ink-900 text-base leading-relaxed pl-3 border-l-2 border-perg-300 group-hover:border-terracotta-500/60 transition select-text">${escapeHtml(poem.text)}</div>
+            ${poem.notes ? `
+            <div class="mt-4 p-3 bg-perg-100/90 rounded-xl border border-perg-300 text-xs">
+              <div class="text-[11px] font-semibold uppercase tracking-wider text-terracotta-700 mb-1">Nota dell'autore</div>
+              <p class="font-serif italic text-perg-800 leading-snug">${escapeHtml(poem.notes)}</p>
+            </div>` : ''}
+          </div>
+
+          <div class="px-5 py-3 bg-perg-100/70 border-t border-perg-200 flex items-center justify-between text-xs no-print">
+            <button onclick="window.toggleResonance('${poem.id}')"
+                    class="flex items-center gap-1.5 px-2.5 py-1 rounded-lg border transition ${
+                      poem.liked ? 'bg-terracotta-100 text-terracotta-700 border-terracotta-500 font-bold' : 'bg-perg-200/60 hover:bg-perg-200 text-perg-800 border-perg-300'}">
+              <span class="${poem.liked ? 'text-terracotta-600 scale-110' : 'text-perg-700'}">♥</span>
+              <span>${poem.likes || 0}</span>
+              <span class="hidden sm:inline text-[11px] font-medium">Mi piace</span>
+            </button>
+
+            <button onclick="window.openCritiques('${poem.id}')"
+                    class="flex items-center gap-1.5 px-3 py-1 rounded-lg bg-perg-200 hover:bg-perg-300 text-ink-900 border border-perg-300 font-medium transition">
+              <svg class="w-3.5 h-3.5 text-terracotta-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/></svg>
+              <span>Commenti (${critiqueCount})</span>
+            </button>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    window.toggleResonance = async function (poemId) {
+      const p = poems.find(x => x.id === poemId);
+      if (!p) return;
+      if (p.liked) {
+        p.likes = Math.max(0, (p.likes || 1) - 1);
+        p.liked = false;
+      } else {
+        p.likes = (p.likes || 0) + 1;
+        p.liked = true;
+        showToast(`Ti piace "${p.title}"!`);
+      }
+      await persistPoems();
+      renderPoemCards();
+    };
+
+    window.openLectern = function (poemId) {
+      const poem = poems.find(p => p.id === poemId);
+      if (!poem) return;
+      document.getElementById('lecternTheme').textContent = poem.symbolEmoji || '✒️';
+      document.getElementById('lecternTitle').textContent = poem.title;
+      document.getElementById('lecternAuthor').textContent = `di ${poem.author}`;
+      document.getElementById('lecternText').textContent = poem.text;
+      document.getElementById('lecternNotes').textContent = poem.notes || '';
+      document.getElementById('lecternNotesBox').classList.toggle('hidden', !poem.notes);
+      document.getElementById('lecternDate').textContent = `📅 Caricata il ${poemDate(poem)}`;
+      document.getElementById('lecternModal').classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    };
+
+    window.openCritiques = function (poemId) {
+      const poem = poems.find(p => p.id === poemId);
+      if (!poem) return;
+      document.getElementById('critiquePoemId').value = poem.id;
+      document.getElementById('critiquePoemTitle').textContent = poem.title;
+      document.getElementById('critiquePoemAuthor').textContent = `di ${poem.author}`;
+
+      const list = document.getElementById('critiquesList');
+      list.innerHTML = '';
+      if (!poem.critiques || poem.critiques.length === 0) {
+        list.innerHTML = `<div class="text-center py-5 text-perg-700 italic text-xs">Nessun commento ancora. Scrivi il primo!</div>`;
+      } else {
+        poem.critiques.forEach(c => {
+          const item = document.createElement('div');
+          item.className = "p-3 bg-perg-100 rounded-xl border border-perg-300 text-xs space-y-1";
+          item.innerHTML = `
+            <div class="flex items-center justify-between">
+              <span class="font-bold text-perg-900">${escapeHtml(c.author)}</span>
+              <span class="inline-block px-2 py-0.5 bg-perg-200 text-terracotta-700 rounded text-[10px] font-semibold">${escapeHtml(c.focus || 'Commento')}</span>
+            </div>
+            <p class="font-serif text-ink-900 text-xs leading-relaxed">${escapeHtml(c.text)}</p>
+            <div class="text-[10px] text-perg-700 text-right italic">${escapeHtml(c.createdAt ? formatDateTime(c.createdAt) : (c.date || ''))}</div>`;
+          list.appendChild(item);
+        });
+      }
+      document.getElementById('critiqueModal').classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    };
+
+    const closeAll = () => {
+      ['newPoemModal', 'lecternModal', 'critiqueModal', 'shareModal', 'clearConfirmModal']
+        .forEach(id => document.getElementById(id).classList.add('hidden'));
+      document.body.style.overflow = 'auto';
+    };
+
+    document.getElementById('btnCloseLectern').onclick = closeAll;
+    document.getElementById('btnCloseCritique').onclick = closeAll;
+    document.getElementById('btnCloseModal').onclick = closeAll;
+    document.getElementById('btnCancelModal').onclick = closeAll;
+    document.getElementById('btnCloseShare').onclick = closeAll;
+    document.getElementById('btnCancelClear').onclick = closeAll;
+
+    document.getElementById('critiqueForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const poemId = document.getElementById('critiquePoemId').value;
+      const author = document.getElementById('critiqueReviewer').value.trim();
+      const focus = document.getElementById('critiqueFocus').value;
+      const text = document.getElementById('critiqueText').value.trim();
+      if (!author || !text) return;
+      const poem = poems.find(p => p.id === poemId);
+      if (!poem) return;
+      if (!poem.critiques) poem.critiques = [];
+      poem.critiques.push({ author, focus, text, createdAt: Date.now() });
+      await persistPoems();
+      document.getElementById('critiqueText').value = '';
+      window.openCritiques(poemId);
+      renderPoemCards();
+      showToast("Commento aggiunto!");
+    });
+
+    // Apertura modulo di caricamento
+    const newModal = document.getElementById('newPoemModal');
+    const openNewModal = () => {
+      document.getElementById('previewDate').textContent = formatDateTime(Date.now());
+      newModal.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    };
+    document.getElementById('btnOpenNewModal').onclick = openNewModal;
+    document.getElementById('btnEmptyStateNewPoem').onclick = openNewModal;
+
+    // Caricamento del testo da file .txt
+    document.getElementById('inputFile').addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = () => {
+        document.getElementById('inputText').value = String(reader.result).trim();
+        const titleInput = document.getElementById('inputTitle');
+        if (!titleInput.value) titleInput.value = file.name.replace(/\.[^.]+$/, '');
+        showToast("Testo caricato dal file.");
+      };
+      reader.readAsText(file);
+      e.target.value = '';
+    });
+
+    // Svuota bacheca
+    const clearModal = document.getElementById('clearConfirmModal');
+    const CLEAR_PASSWORD_HASH = '56fde213617cfc207161f1d89abad242cb71306bef8b30662dcd016b68252cad';
+    async function sha256Hex(str) {
+      const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
+      return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
+    }
+    document.getElementById('btnConfirmClearModal').onclick = () => {
+      document.getElementById('clearPassword').value = '';
+      document.getElementById('clearPasswordError').classList.add('hidden');
+      clearModal.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+      document.getElementById('clearPassword').focus();
+    };
+    document.getElementById('clearPassword').addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') document.getElementById('btnExecuteClear').click();
+    });
+    document.getElementById('btnExecuteClear').onclick = async () => {
+      const typed = document.getElementById('clearPassword').value;
+      let ok = false;
+      try { ok = (await sha256Hex(typed)) === CLEAR_PASSWORD_HASH; } catch (e) {}
+      if (!ok) {
+        document.getElementById('clearPasswordError').classList.remove('hidden');
+        return;
+      }
+      document.getElementById('clearPassword').value = '';
+      poems = [];
+      await persistPoems();
+      closeAll();
+      renderPoemCards();
+      showToast("Bacheca svuotata.");
+    };
+
+    // Pubblica poesia
+    document.getElementById('newPoemForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const title = document.getElementById('inputTitle').value.trim();
+      const author = document.getElementById('inputAuthor').value.trim();
+      const symbol = document.getElementById('inputSymbol').value;
+      const text = document.getElementById('inputText').value.trim();
+      const notes = document.getElementById('inputNotes').value.trim();
+      if (!title || !author || !text) return;
+
+      const now = Date.now();
+      poems.unshift({
+        id: "p_" + now,
+        title, author,
+        createdAt: now,
+        date: formatDateTime(now),
+        symbol,
+        symbolEmoji: symbolMap[symbol] || '✒️',
+        text, notes,
+        likes: 0, liked: false, critiques: []
+      });
+      await persistPoems();
+
+      document.getElementById('newPoemForm').reset();
+      closeAll();
+      renderPoemCards();
+      showToast("Poesia caricata nella bacheca!");
+    });
+
+    // Condivisione
+    const shareModal = document.getElementById('shareModal');
+    const openShare = () => {
+      document.getElementById('shareUrlInput').value = window.location.href;
+      shareModal.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    };
+    document.getElementById('btnShareClass').onclick = openShare;
+    document.getElementById('btnEmptyStateShare').onclick = openShare;
+
+    const copyFrom = (id, msg) => {
+      const input = document.getElementById(id);
+      input.select();
+      try { document.execCommand('copy'); showToast(msg); } catch (e) {}
+    };
+    document.getElementById('btnCopyCode').onclick = () => copyFrom('shareClassCodeInput', "Codice classe copiato!");
+    document.getElementById('btnCopyUrl').onclick = () => copyFrom('shareUrlInput', "Link copiato!");
+
+    document.getElementById('btnPrintBooklet').onclick = () => window.print();
+
+    window.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeAll(); });
+
+    window.addEventListener('DOMContentLoaded', () => { initStorage(); });
+  </script>
+</body>
+</html>
